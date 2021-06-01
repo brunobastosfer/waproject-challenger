@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
+import { Button } from '@material-ui/core'
 import { UserContext } from '../Provider';
+import { Link } from 'react-router-dom';
 
 function Home() {
   const {state, dispatch} = useContext(UserContext);
@@ -17,11 +19,16 @@ function Home() {
     <div>
       <h3>Selecione o número de perguntas</h3>
       {nums}
-      <button onClick={increment}>+</button>
+      <Button variant="contained" onClick={increment}>+</Button>
       {
         nums > 0 &&
-      <button onClick={decrement}>-</button>
+      <Button variant="contained" onClick={decrement}>-</Button>
       }
+      <div>
+        <Button variant="contained" color="primary">
+          <Link className='cancel-link' to='/start'>Iniciar</Link>
+        </Button>
+      </div>
     </div>
   )
 }
