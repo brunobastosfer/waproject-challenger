@@ -6,9 +6,11 @@ import GameQuestions from './GameQuestions';
 
 function Game() {
   const { state } = useContext(UserContext)
+  const { correct, wrong } = state
   const questions = state.apiQuestions
   return (
     <div>
+      Numero de acertos: { correct } Numero de erros: { wrong }
       {questions.length > 0 &&
         <>{
           questions.map((item, index) => {

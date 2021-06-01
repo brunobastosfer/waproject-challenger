@@ -3,7 +3,6 @@ import { UserContext } from '../Provider';
 
 function Finish() {
   const { state: {numQuestions, correct}} = useContext(UserContext)
-  console.log(numQuestions, correct)
   return (
     <div>
       {Math.floor(numQuestions / 2) < correct ?
