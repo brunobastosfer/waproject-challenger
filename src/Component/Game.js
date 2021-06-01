@@ -1,14 +1,28 @@
+import { Button } from '@material-ui/core';
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { UserContext } from '../Provider';
 import GameQuestions from './GameQuestions';
 
 function Game() {
-  const {state} = useContext(UserContext);
+  const { state } = useContext(UserContext)
   const questions = state.apiQuestions
   return (
     <div>
       {questions.length > 0 &&
-          questions.map((item, index) => <GameQuestions items={item} position={index} />)
+        <>{
+          questions.map((item, index) => {
+            return (
+            <>
+              <GameQuestions items={item} position={index} />
+            </>
+          )})}
+          <div>
+            <Link to='/finish'>
+              <Button variant="contained" color="secondary">Finish</Button>
+            </Link>
+          </div>
+        </>
       }
     </div>
   )

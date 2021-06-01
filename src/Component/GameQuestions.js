@@ -4,7 +4,6 @@ import { UserContext } from '../Provider'
 
 function GameQuestions(props) {
   const { state, dispatch } = useContext(UserContext)
-  console.log(state)
   const correctAnswer = state.correct;
   const incorrectAnswer = state.wrong;
   const { category, difficulty, question } = props.items;
@@ -12,17 +11,17 @@ function GameQuestions(props) {
   const { incorrect_answers , correct_answer, type } = props.items;
 
   const answered = ({ target }) => {
+    const father = target.parentNode;
+    father.classList.add('Mui-disabled')
     if(target.textContent === correct_answer) {
       dispatch({ type: 'CORRECT', payload: correctAnswer + 1 })
     } else {
-      dispatch({ type: 'WRONG', payload: incorrectAnswer - 1 })
+      dispatch({ type: 'WRONG', payload: incorrectAnswer + 1 })
     }
   }
   
   return (
     <div>
-      <p>Acertos: {correctAnswer}</p>
-      <p>Erros: {incorrectAnswer}</p>
       <h4>Questions number {position + 1} - {category}</h4>
       <p>Difficulty - <strong>{difficulty}</strong></p>
       <p></p>
@@ -34,16 +33,16 @@ function GameQuestions(props) {
           incorrect_answers.map((item) => {
           return (
               <>
-               <Button onClick={answered}>{item}</Button>
+               <Button variant = "contained" color = "primary" onClick={answered}>{item}</Button>
               </>
           )
         })}
-        <Button onClick={answered} value={correct_answer}>{correct_answer}</Button>
+        <Button variant="contained" color="primary" onClick={answered} value={correct_answer}>{correct_answer}</Button>
         </>
         : 
           <div>
-            <Button onClick={answered} value={incorrect_answers}>{incorrect_answers}</Button>
-            <Button onClick={answered} value={correct_answer}>{correct_answer}</Button>
+            <Button variant="contained"  color="primary" onClick={answered} value={incorrect_answers}>{incorrect_answers}</Button>
+            <Button variant="contained" color="primary" onClick={answered} value={correct_answer}>{correct_answer}</Button>
           </div>
       }
     </div>

@@ -19,17 +19,16 @@ function Start() {
 
   return (
     <div>
-      <Button variant="contained" color="primary">
-        <Link className='cancel-link' to='/'>Cancelar</Link>
-      </Button>
-      <Button variant="contained" color="primary" href='/game' onClick={getApi(nums)}>
-        Iniciar
-      </Button>
-      <Link color="primary" to="/game">
-        <Button renderas="button" onClick={getApi(nums)}>
-        <span>Login</span>
-        </Button>
-      </Link>
+        <Link className='cancel-link' to='/'>
+          <Button variant="contained" color="primary">
+            <span>Cancelar</span>
+          </Button>
+        </Link>
+        <Link className='cancel-link' to="/game">
+          <Button variant="contained" color="primary" renderas="button" onClick={getApi(nums)}>
+            <span>Login</span>
+          </Button>
+        </Link>
     </div>
   )
 }
