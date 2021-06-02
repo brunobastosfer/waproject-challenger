@@ -4,7 +4,6 @@ import { INITIAL_STATE } from './initialState'
 export const UserContext = createContext() 
 
 const reducer = (state, action) => {
-  console.log(action)
   switch(action.type){
     case 'INCREMENT':
       return {
@@ -25,17 +24,19 @@ const reducer = (state, action) => {
       return {
         ...state,
         correct: action.payload,
+        resCorrect: [...state.resCorrect, action.response],
       }
     case 'WRONG':
       return {
         ...state,
-        wrong: action.payload
+        wrong: action.payload,
+        resWrong: [...state.resWrong, action.response],
       }
-    case 'RES':
-      return {
-        ...state,
-        answers: action.load
-      }
+    // case 'RES':
+    //   return {
+    //     ...state,
+    //     answers: [...state.answers, action.payload]
+    //   }
   default:
     return state;
   }

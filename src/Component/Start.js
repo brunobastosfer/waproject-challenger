@@ -26,7 +26,7 @@ function Start() {
         </Link>
         <Link className='cancel-link' to="/game">
           <Button variant="contained" color="primary" renderas="button" onClick={getApi(nums)}>
-            <span>Login</span>
+            <span>Start</span>
           </Button>
         </Link>
     </div>

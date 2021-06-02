@@ -3,23 +3,20 @@ import { Button } from '@material-ui/core';
 import { UserContext } from '../Provider'
 
 function GameQuestions(props) {
-  const { state, dispatch, answers } = useContext(UserContext)
+  const { state, dispatch } = useContext(UserContext)
   const correctAnswer = state.correct;
   const incorrectAnswer = state.wrong;
   const { category, difficulty, question } = props.items;
   const { position} = props;
   const { incorrect_answers , correct_answer, type } = props.items;
-  const resolved = []
 
   const answered = ({ target }) => {
     const father = target.parentNode;
     father.classList.add('Mui-disabled')
-    resolved.push(target.textContent)
-    dispatch({ type: 'RES', payload: answers } )
     if(target.textContent === correct_answer) {
-      dispatch({ type: 'CORRECT', payload: correctAnswer + 1 })
+      dispatch({ type: 'CORRECT', payload: correctAnswer + 1, response: target.textContent })
     } else {
-      dispatch({ type: 'WRONG', payload: incorrectAnswer + 1 })
+      dispatch({ type: 'WRONG', payload: incorrectAnswer + 1, response: target.textContent })
     }
   }
   
@@ -27,7 +24,6 @@ function GameQuestions(props) {
     <div>
       <h4>Questions number {position + 1} - {category}</h4>
       <p>Difficulty - <strong>{difficulty}</strong></p>
-      <p></p>
       <p>{question}</p>
       {
         type === 'multiple'

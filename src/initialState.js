@@ -4,4 +4,6 @@ export const INITIAL_STATE = {
   apiQuestions: {},
   correct: 0,
   wrong: 0,
+  resCorrect: '',
+  resWrong: '',
 }
