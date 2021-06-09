@@ -13,10 +13,11 @@ function GameQuestions(props) {
   const answered = ({ target }) => {
     const father = target.parentNode;
     father.classList.add('Mui-disabled')
+    dispatch({ type: 'ANSWER', payload: target.textContent})
     if(target.textContent === correct_answer) {
-      dispatch({ type: 'CORRECT', payload: correctAnswer + 1, response: target.textContent })
+      dispatch({ type: 'CORRECT', payload: correctAnswer + 1 })
     } else {
-      dispatch({ type: 'WRONG', payload: incorrectAnswer + 1, response: target.textContent })
+      dispatch({ type: 'WRONG', payload: incorrectAnswer + 1 })
     }
   }
   

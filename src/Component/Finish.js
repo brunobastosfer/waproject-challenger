@@ -3,16 +3,14 @@ import { UserContext } from '../Provider';
 
 function Finish() {
   const state = useContext(UserContext)
-  const { state: { response, type, apiQuestions } } = state;
-  const { state: { numQuestions, correct, resCorrect, resWrong }} = state;
+  const { state: { answers, apiQuestions } } = state;
+  const { state: { numQuestions, correct}} = state;
 
   const questions = apiQuestions.map((item) => {{
     return {
     question: item.question,
     Correctresponse: item.correct_answer,
-    IncorrectResponse: item.incorrect_answers,
-    resCorrect: resCorrect.map((item) => item),
-    resWrong: resWrong.map((item) => item),
+    userAnswer: answers.map((item) => item)
   }}})
 
   return (
@@ -23,6 +21,21 @@ function Finish() {
       <h1>Não é tão fácil quanto parece! Você acertou: {correct} de {numQuestions}</h1>
       }
       <h4>Gabarito: </h4>
+      <div>
+        {
+          questions.map((item, index) => 
+          { return (
+          <div>
+            <div>{item.question}</div>
+            <div>
+              <p>Your Answer: {item.userAnswer[index]}</p>
+              <p>Correct Answer: {item.Correctresponse}</p>
+            </div>
+          </div>
+          )
+          })
+        }
+      </div>
     </div>
   )
 }

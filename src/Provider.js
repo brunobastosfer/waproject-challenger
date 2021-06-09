@@ -24,19 +24,17 @@ const reducer = (state, action) => {
       return {
         ...state,
         correct: action.payload,
-        resCorrect: [...state.resCorrect, action.response],
       }
     case 'WRONG':
       return {
         ...state,
         wrong: action.payload,
-        resWrong: [...state.resWrong, action.response],
       }
-    // case 'RES':
-    //   return {
-    //     ...state,
-    //     answers: [...state.answers, action.payload]
-    //   }
+    case 'ANSWER':
+      return {
+        ...state,
+        answers: [...state.answers, action.payload]
+      }
   default:
     return state;
   }
